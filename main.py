@@ -8,7 +8,7 @@ def main():
     password = input("password: ")                      # the password of given account
     media_id = input("media id: ")                      # media id of the post
     account = input("account: ")                        # owner account of the post with the given media_id
-    follower_count = int(input("follower_count"))       # follower count of the given account
+    follower_count = int(input("follower_count: "))       # follower count of the given account
 
     instagram = Instagram()
     instagram.with_credentials(username, password)
