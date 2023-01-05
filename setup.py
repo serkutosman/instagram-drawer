@@ -1,6 +1,7 @@
-from src.constants import CREDENTIALS_FILE, INSTALL_REQUIREMENTS
+from src.constants import CREDENTIALS_FILE, INSTALL_REQUIREMENTS_UNIX, INSTALL_REQUIREMENTS_WIN
 
 import os
+from sys import platform
 from getpass import getpass
 
 
@@ -22,18 +23,21 @@ def installRequirements():
     print("Installing requirements...")
 
     try:
-        os.system(INSTALL_REQUIREMENTS)
+        if platform == "win32":
+            os.system(INSTALL_REQUIREMENTS_WIN)
+        else:
+            os.system(INSTALL_REQUIREMENTS_UNIX)
     except Exception as e:
-        print("Error installing requirements. Please install them manually.\n\nERROR MESSAGE: ", end="")
+        print("Error installing requirements. Please check whether you have pip.\n\nERROR MESSAGE: ", end="")
         print(e)
         exit()
 
 
 def main():
+    installRequirements()
+
     if not credentialsExist():
         getCredentials()
-
-    installRequirements()
 
 
 if __name__ == "__main__":
